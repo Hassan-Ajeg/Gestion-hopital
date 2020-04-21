@@ -5,6 +5,7 @@ public class Medecin {
     private int id;
     private String nom;
     private String prenom;
+    private String motDePasse;
     private int idPraticien;
     private int idService;
     private int idSpecialite;
@@ -13,10 +14,11 @@ public class Medecin {
         super();
     }
 
-    public Medecin(String nom, String prenom, int idPraticien, int idService, int idSpecialite) {
+    public Medecin(String nom, String prenom,String motDePasse, int idPraticien, int idService, int idSpecialite) {
         super();
         this.nom = nom;
         this.prenom = prenom;
+        this.motDePasse = motDePasse;
         this.idPraticien = idPraticien;
         this.idService = idService;
     }
@@ -52,6 +54,15 @@ public class Medecin {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
+    
 
     public int getIdPraticien() {
         return idPraticien;

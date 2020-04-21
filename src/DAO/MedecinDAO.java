@@ -47,13 +47,13 @@ public class MedecinDAO {
         return liste;
     }
     //rechercher un medecin en fonction de son id_praticien
-    public Medecin selectOne(int idPraticien) {
+    public Medecin selectOne(int id) {
         Medecin medecin = null;
         
         try{
             String sql = "SELECT * FROM medecins WHERE id = ?";
             ps= cnx.prepareStatement(sql);
-            ps.setInt(1, medecin.getId());
+            ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 medecin.setId(rs.getInt("id"));
@@ -78,13 +78,14 @@ public class MedecinDAO {
         int affected = 0;
         
         try{
-            String sql = "INSERT INTO medecins(nom, prenom, id_praticien, id_service, id_specialite) VALUES(?, ?, ? , ? ,?)";
+            String sql = "INSERT INTO medecins(nom, prenom,mot_de_passe, id_praticien, id_service, id_specialite) VALUES(?, ?, ? , ? ,?, ?)";
             ps = cnx.prepareStatement(sql);
             ps.setString(1, medecin.getNom());
             ps.setString(2, medecin.getPrenom());
-            ps.setInt(3, medecin.getIdPraticien());
-            ps.setInt(4, medecin.getIdService());
-            ps.setInt(5, medecin.getIdSpecialite());
+            ps.setString(3, medecin.getMotDePasse());
+            ps.setInt(4, medecin.getIdPraticien());
+            ps.setInt(5, medecin.getIdService());
+            ps.setInt(6, medecin.getIdSpecialite());
             affected = ps.executeUpdate();
             
         }catch(SQLException e){

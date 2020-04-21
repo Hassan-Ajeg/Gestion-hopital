@@ -49,7 +49,7 @@ public class PatientDAO {
         try{
             String sql = "SELECT * FROM patients WHERE id = ?";
             ps = cnx.prepareStatement(sql);
-            ps.setInt(1, patient.getId());
+            ps.setInt(1, id);
             rs = ps.executeQuery();
             while(rs.next()) {
                 patient.setId(rs.getInt("id"));
