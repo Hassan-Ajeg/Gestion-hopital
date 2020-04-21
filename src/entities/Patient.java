@@ -1,5 +1,6 @@
 package entities;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Patient {
@@ -8,20 +9,20 @@ public class Patient {
     private String nom;
     private String prenom;
     private int nss;
-    private Date dateDeCreation;
+    private LocalDate dateDeCreation;
 
     public Patient() {
         super();
     }
 
-    public Patient(String nom, String prenom, int nss, Date dateDeCreation) {
+    public Patient(String nom, String prenom, int nss, LocalDate dateDeCreation) {
         super();
         this.nom = nom;
         this.prenom = prenom;
         this.nss = nss;
     }
 
-    public Patient(int id, String nom, String prenom, int nss, Date dateDeCreation) {
+    public Patient(int id, String nom, String prenom, int nss, LocalDate dateDeCreation) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -49,11 +50,11 @@ public class Patient {
         return prenom;
     }
 
-    public Date getDateDeCreation() {
+    public LocalDate getDateDeCreation() {
         return dateDeCreation;
     }
 
-    public void setDateDeCreation(Date dateDeCreation) {
+    public void setDateDeCreation(LocalDate dateDeCreation) {
         this.dateDeCreation = dateDeCreation;
     }
 

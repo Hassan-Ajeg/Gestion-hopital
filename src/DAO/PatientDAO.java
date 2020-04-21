@@ -30,10 +30,11 @@ public class PatientDAO {
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 Patient patient = new Patient();
+                patient.setId(rs.getInt("id"));
                 patient.setNom(rs.getString("nom"));
                 patient.setPrenom(rs.getString("prenom"));
                 patient.setNss(rs.getInt("nss"));
-                patient.setDateDeCreation(rs.getDate("date_creation"));
+                patient.setDateDeCreation(rs.getDate("date_creation").toLocalDate());
                 liste.add(patient);
             }
         }catch(SQLException e){
@@ -43,12 +44,45 @@ public class PatientDAO {
     }
     
     //rechercher un patient en fonction de son NSS
-    public Patient selectOne(int nss){
+    public Patient selectOne(int id){
         Patient patient = null;
-        
-        
-        
+        try{
+            String sql = "SELECT * FROM patients WHERE id = ?";
+            ps = cnx.prepareStatement(sql);
+            ps.setInt(1, patient.getId());
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                patient.setId(rs.getInt("id"));
+                patient.setNom(rs.getString("nom"));
+                patient.setPrenom(rs.getString("prenom"));
+                patient.setNss(rs.getInt("nss"));
+                patient.setDateDeCreation(rs.getDate("date_creation").toLocalDate());
+            }
+           
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
         return patient;
+    }
+    //inserer un nouveau medecin
+    public int insert(Patient patient) {
+        int affected = 0;
+        
+        try{
+            String sql = "INSERT INTO patients(nom, prenom, nss, date_creation) VALUES(?, ?, ? , ?)";
+            ps = cnx.prepareStatement(sql);
+            ps.setString(1, patient.getNom());
+            ps.setString(2, patient.getPrenom());
+            ps.setInt(3, patient.getNss());
+            ps.setDate(4, java.sql.Date.valueOf(patient.getDateDeCreation()));
+            affected = ps.executeUpdate();
+            
+        }catch(SQLException e){
+            affected = -1;
+            System.out.println(e.getMessage());
+        }
+        
+        return affected;
     }
     
 }
