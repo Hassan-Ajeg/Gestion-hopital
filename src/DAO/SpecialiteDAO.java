@@ -1,12 +1,12 @@
 package DAO;
 
 import connection.SingleConnection;
-import entities.Chambre;
+import entities.Specialite;
 import java.sql.*;
 import java.util.*;
 
-public class ChambreDAO {
-
+public class SpecialiteDAO {
+    
     Connection cnx = null;
     String url = "jdbc:mysql://127.0.0.1:8889/";
     String dbName = "gestion_hopital";
@@ -15,49 +15,51 @@ public class ChambreDAO {
     Statement stmt;
     PreparedStatement ps;
     ResultSet rs;
-
-    public ChambreDAO() {
+    
+    public SpecialiteDAO() {
         //connexion à la BD dans le constructeur en passant par singleConnection
         cnx = SingleConnection.getInstance(url, dbName, user, password);
     }
 
-    //liste des chambres
-    public List<Chambre> selectAll() {
-        List<Chambre> liste = new ArrayList();
+    //liste des specialités
+    public List<Specialite> selectAll() {
+        List<Specialite> liste = new ArrayList();
         try {
-            String sql = "SELECT * FROM chambres";
+            String sql = "SELECT * FROM specialites";
             stmt = cnx.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                Chambre chambre = new Chambre();
-                chambre.setId(rs.getInt("id"));
-                chambre.setIdService(rs.getInt("id_service"));
-                chambre.setEtage(rs.getInt("etage"));
-                liste.add(chambre);
+                Specialite specialite = new Specialite();
+                specialite.setId(rs.getInt("id"));
+                specialite.setNomSpecialite(rs.getString("nom_specialite"));
+                liste.add(specialite);
+                
             }
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        
         return liste;
     }
 
-    //Rechercher une chambre par son id
-    public Chambre selectOne(int id) {
-        Chambre chambre = new Chambre();
+    //rechercher une specialité en fonction de son id
+    public Specialite selectOne(int id) {
+        Specialite specialite = null;
+        
         try {
-            String sql = "SELECT * FROM chambres WHERE id = ?";
+            String sql = "SELECT * FROM specialites WHERE id = ?";
             ps = cnx.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                chambre.setId(rs.getInt("id"));
-                chambre.setIdService(rs.getInt("id_service"));
-                chambre.setId(rs.getInt("etage"));
+                specialite.setId(rs.getInt("id"));
+                specialite.setNomSpecialite(rs.getString("nom_specialite"));
             }
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return chambre;
+        return specialite;
+        
     }
 }

@@ -1,29 +1,30 @@
 package entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Consultation {
 	
 	private int id;
-	private int idPraticien;
+	private int idMedecin;
 	private int idPatient;
         private int idPathologie;
-	private Date dateDeCreation;
+	private LocalDate dateDeCreation;
 	
 	public Consultation() {
 		super();
 	}
 
-	public Consultation(int idConsultation, int idPraticien) {
+	public Consultation(int id, int idMedecin) {
 		super();
 		this.id = id;
-		this.idPraticien = idPraticien;
+		this.idMedecin = idMedecin;
 	}
 
-	public Consultation(int id, int idPraticien, int idPatient,int idPathologie, Date dateDeCreation) {
+	public Consultation(int id, int idMedecin, int idPatient,int idPathologie, LocalDate dateDeCreation) {
 		super();
 		this.id = id;
-		this.idPraticien = idPraticien;
+		this.idMedecin = idMedecin;
 		this.idPatient = idPatient;
                 this.idPathologie = idPathologie;
 		this.dateDeCreation = dateDeCreation;
@@ -37,12 +38,12 @@ public class Consultation {
 		this.id = id;
 	}
 
-	public int getIdPraticien() {
-		return idPraticien;
+	public int getIdMedecin() {
+		return idMedecin;
 	}
 
-	public void setIdPraticien(int idPraticien) {
-		this.idPraticien = idPraticien;
+	public void setIdMedecin(int idMedecin) {
+		this.idMedecin = idMedecin;
 	}
 
 	public int getIdPatient() {
@@ -62,17 +63,17 @@ public class Consultation {
     }
         
 
-	public Date getDateDeCreation() {
+	public LocalDate getDateDeCreation() {
 		return dateDeCreation;
 	}
 
-	public void setDateDeCreation(Date dateDeCreation) {
+	public void setDateDeCreation(LocalDate dateDeCreation) {
 		this.dateDeCreation = dateDeCreation;
 	}
 
     @Override
     public String toString() {
-        return "Consultation{" + "id=" + id + ", idPraticien=" + idPraticien + 
+        return "Consultation{" + "id=" + id + ", idMedecin=" + idMedecin + 
                 ", idPatient=" + idPatient + ", idPathologie=" + idPathologie + ", dateDeCreation=" + dateDeCreation + '}';
     }
 
