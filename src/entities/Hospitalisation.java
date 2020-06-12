@@ -1,5 +1,6 @@
 package entities;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Hospitalisation {
@@ -7,13 +8,13 @@ public class Hospitalisation {
     private int id;
     private int idPatient;
     private int idChambre;
-    private Date dateEntree;
-    private Date dateSortie;
+    private LocalDate dateEntree;
+    private LocalDate dateSortie;
 
     public Hospitalisation() {
     }
 
-    public Hospitalisation(int id, int idPatient, int idChambre, Date dateEntree, Date dateSortie) {
+    public Hospitalisation(int id, int idPatient, int idChambre, LocalDate dateEntree, LocalDate dateSortie) {
         this.id = id;
         this.idPatient = idPatient;
         this.idChambre = idChambre;
@@ -51,19 +52,19 @@ public class Hospitalisation {
         this.idChambre = idChambre;
     }
 
-    public Date getDateEntree() {
+    public LocalDate getDateEntree() {
         return dateEntree;
     }
 
-    public void setDateEntree(Date dateEntree) {
+    public void setDateEntree(LocalDate dateEntree) {
         this.dateEntree = dateEntree;
     }
 
-    public Date getDateSortie() {
+    public LocalDate getDateSortie() {
         return dateSortie;
     }
 
-    public void setDateSortie(Date dateSortie) {
+    public void setDateSortie(LocalDate dateSortie) {
         this.dateSortie = dateSortie;
     }
 

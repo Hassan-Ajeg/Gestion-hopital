@@ -5,22 +5,29 @@ import java.sql.*;
 public class SingleConnection {
 
     private static Connection cnx;
+    String url = "jdbc:mysql://127.0.0.1:8889/";
+    String dbName = "gestion_hopital";
+    String user = "root";
+    String password = "root";
 //Constructeur privé
 
-    private SingleConnection(String url, String dbName, String user, String password) {
+    private SingleConnection() {
         
         try {
             cnx = (Connection) DriverManager.getConnection( url + dbName, user, password);
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 //Méthode qui crée/retourne l’instance unique
 
-    public static Connection getInstance(String url, String dbName, String user, String password) {
+    public static Connection getInstance() {
         if (cnx == null) {
-            new SingleConnection(url, dbName, user, password);
+            new SingleConnection();
         }
         return cnx;
     }
 }
+
+

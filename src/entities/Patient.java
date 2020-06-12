@@ -8,21 +8,21 @@ public class Patient {
     private int id;
     private String nom;
     private String prenom;
-    private int nss;
+    private Long nss;
     private LocalDate dateDeCreation;
 
     public Patient() {
         super();
     }
 
-    public Patient(String nom, String prenom, int nss, LocalDate dateDeCreation) {
+    public Patient(String nom, String prenom, Long nss, LocalDate dateDeCreation) {
         super();
         this.nom = nom;
         this.prenom = prenom;
         this.nss = nss;
     }
 
-    public Patient(int id, String nom, String prenom, int nss, LocalDate dateDeCreation) {
+    public Patient(int id, String nom, String prenom, Long nss, LocalDate dateDeCreation) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -62,11 +62,11 @@ public class Patient {
         this.prenom = prenom;
     }
 
-    public int getNss() {
+    public Long getNss() {
         return nss;
     }
 
-    public void setNss(int nss) {
+    public void setNss(Long nss) {
         this.nss = nss;
     }
 

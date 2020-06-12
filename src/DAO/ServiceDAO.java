@@ -18,14 +18,14 @@ public class ServiceDAO {
 
     public ServiceDAO() {
         //connexion à la BD dans le constructeur en passant par singleConnection
-        cnx = SingleConnection.getInstance(url, dbName, user, password);
+        cnx = SingleConnection.getInstance();
     }
 
     //Liste des services
     public List<Service> selectAll() {
         List<Service> liste = new ArrayList();
         try {
-            String sql = "SELECT * FROM services";
+            String sql = "SELECT * FROM services ORDER BY id";
             stmt = cnx.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -59,12 +59,28 @@ public class ServiceDAO {
         return service;
         
     }
-    //supprimer un service
-    public int delete(Service service){
+    
+    //ajouter un service 
+    public int insert(Service service){
         int affected = 0;
         try{
-            String sql = "DELETE FROM services WHERE id=?";
-            ps.setInt(1, service.getId());
+            String sql = "INSERT INTO services(nom_service) VALUES(?)";
+             ps = cnx.prepareStatement(sql);
+            ps.setString(1, service.getNomService());
+            affected = ps.executeUpdate();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        
+        return affected;
+    }
+    //supprimer un service
+    public int delete(String nomService){
+        int affected = 0;
+        try{
+            String sql = "DELETE FROM services WHERE nom_service=?";
+            ps = cnx.prepareStatement(sql);
+            ps.setString(1, nomService);
             affected = ps.executeUpdate();
         }catch(SQLException e){
             affected = -1;

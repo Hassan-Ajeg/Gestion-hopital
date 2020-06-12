@@ -6,7 +6,7 @@ import java.util.Date;
 public class Consultation {
 	
 	private int id;
-	private int idMedecin;
+	//private int idUtilisateur;
 	private int idPatient;
         private int idPathologie;
 	private LocalDate dateDeCreation;
@@ -15,16 +15,16 @@ public class Consultation {
 		super();
 	}
 
-	public Consultation(int id, int idMedecin) {
+	public Consultation(int id) {
 		super();
 		this.id = id;
-		this.idMedecin = idMedecin;
+		//this.idUtilisateur = idUtilisateur;
 	}
 
-	public Consultation(int id, int idMedecin, int idPatient,int idPathologie, LocalDate dateDeCreation) {
+	public Consultation(int id, int idPatient,int idPathologie, LocalDate dateDeCreation) {
 		super();
 		this.id = id;
-		this.idMedecin = idMedecin;
+		//this.idUtilisateur = idUtilisateur;
 		this.idPatient = idPatient;
                 this.idPathologie = idPathologie;
 		this.dateDeCreation = dateDeCreation;
@@ -38,13 +38,13 @@ public class Consultation {
 		this.id = id;
 	}
 
-	public int getIdMedecin() {
-		return idMedecin;
+	/*public int getIdUtilisateur() {
+		return idUtilisateur;
 	}
 
-	public void setIdMedecin(int idMedecin) {
-		this.idMedecin = idMedecin;
-	}
+	public void setIdUtilisateur(int idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
+	}*/
 
 	public int getIdPatient() {
 		return idPatient;
@@ -73,7 +73,7 @@ public class Consultation {
 
     @Override
     public String toString() {
-        return "Consultation{" + "id=" + id + ", idMedecin=" + idMedecin + 
+        return "Consultation{" + "id=" + id  + 
                 ", idPatient=" + idPatient + ", idPathologie=" + idPathologie + ", dateDeCreation=" + dateDeCreation + '}';
     }
 

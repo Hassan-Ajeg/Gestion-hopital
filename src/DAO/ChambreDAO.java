@@ -18,7 +18,7 @@ public class ChambreDAO {
 
     public ChambreDAO() {
         //connexion à la BD dans le constructeur en passant par singleConnection
-        cnx = SingleConnection.getInstance(url, dbName, user, password);
+        cnx = SingleConnection.getInstance();
     }
 
     //liste des chambres

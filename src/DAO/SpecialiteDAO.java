@@ -18,14 +18,14 @@ public class SpecialiteDAO {
     
     public SpecialiteDAO() {
         //connexion à la BD dans le constructeur en passant par singleConnection
-        cnx = SingleConnection.getInstance(url, dbName, user, password);
+        cnx = SingleConnection.getInstance();
     }
 
     //liste des specialités
     public List<Specialite> selectAll() {
         List<Specialite> liste = new ArrayList();
         try {
-            String sql = "SELECT * FROM specialites";
+            String sql = "SELECT * FROM specialites ORDER BY id";
             stmt = cnx.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
